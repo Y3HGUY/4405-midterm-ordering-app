@@ -6,16 +6,36 @@
 //
 
 import SwiftUI
+import Combine
+import Foundation
 
 struct ContentView: View {
+    @StateObject private var orderManager = OrderManager()
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+            VStack(spacing : 20) {
+                Text("8 Create Coffee")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                
+                NavigationLink("Build Your Own Drink") {
+                    CustomBuilderView(orderManager: orderManager)
+                }
+                .buttonStyle(.borderedProminent)
+                
+                NavigationLink("Specialty Drinks") {
+                    SpecialtyItemsView(orderManager: orderManager)
+                }
+                .buttonStyle(.borderedProminent)
+                
+                NavigationLink("View Cart") {
+                    CartView(orderManager: orderManager)
+                }
+                .buttonStyle(.borderedProminent)
+            }
+            .padding()
         }
-        .padding()
     }
 }
 
