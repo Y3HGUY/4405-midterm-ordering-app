@@ -9,7 +9,7 @@ import SwiftUI
 
 
 struct SpecialtyItemsView: View {
-    @ObservedObject var orderManager: OrderManager
+    @Binding var cartItems: [CartItem]
     
     //add some fun drinks
     //give price and description
@@ -54,7 +54,7 @@ struct SpecialtyItemsView: View {
                             Button("Add") {
                                 let item = CartItem(name: drink.name, details: drink.description, price: drink.price, quantity: 1
                                 )
-                                orderManager.addItem(item)
+                                cartItems.append(item)
                             }
                             .buttonStyle(.borderedProminent)
                         }
