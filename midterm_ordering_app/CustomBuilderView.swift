@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 
 struct CustomBuilderView: View {
-    @ObservedObject var orderManager: OrderManager
+    @Binding var cartItems: [CartItem]
     
     //View for creating cart items to put together for customers
     //include items, sizing, and other details
@@ -106,7 +106,7 @@ struct CustomBuilderView: View {
                     price: itemPrice,
                     quantity: quantity
                 )
-                orderManager.addItem(item)
+                cartItems.append(item)
             }
         }
         .navigationTitle("Build Your Drink!")

@@ -10,7 +10,7 @@ import Combine
 import Foundation
 
 struct ContentView: View {
-    @StateObject private var orderManager = OrderManager()
+    @State private var cartItems: [CartItem] = []
     
     var body: some View {
         NavigationStack {
@@ -20,17 +20,17 @@ struct ContentView: View {
                     .fontWeight(.bold)
                 
                 NavigationLink("Build Your Own Drink") {
-                    CustomBuilderView(orderManager: orderManager)
+                    CustomBuilderView(cartItems: $cartItems)
                 }
                 .buttonStyle(.borderedProminent)
                 
                 NavigationLink("Specialty Drinks") {
-                    SpecialtyItemsView(orderManager: orderManager)
+                    SpecialtyItemsView(cartItems: $cartItems)
                 }
                 .buttonStyle(.borderedProminent)
                 
                 NavigationLink("View Cart") {
-                    CartView(orderManager: orderManager)
+                    CartView(cartItems: $cartItems)
                 }
                 .buttonStyle(.borderedProminent)
             }
